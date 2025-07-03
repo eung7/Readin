@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "Heunjeok",
-    "slug": "Heunjeok",
+    "name": "readin",
+    "slug": "readin",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "heunjeok",
+    "scheme": "readin",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
