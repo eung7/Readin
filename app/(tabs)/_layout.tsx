@@ -1,10 +1,12 @@
 import { theme } from "@/common/theme";
 import { Ionicons } from "@expo/vector-icons";
 import { Tabs } from "expo-router";
+import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function TabLayout() {
   const insets = useSafeAreaInsets();
+  const { t } = useTranslation();
 
   return (
     <Tabs
@@ -26,7 +28,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: "홈",
+          title: t("tabs.home"),
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="home" size={size} color={color} />
           ),
@@ -35,7 +37,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="library"
         options={{
-          title: "라이브러리",
+          title: t("tabs.library"),
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="library" size={size} color={color} />
           ),
@@ -44,7 +46,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="statistics"
         options={{
-          title: "통계",
+          title: t("tabs.statistics"),
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="stats-chart" size={size} color={color} />
           ),
@@ -53,7 +55,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="my"
         options={{
-          title: "마이",
+          title: t("tabs.my"),
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="person" size={size} color={color} />
           ),

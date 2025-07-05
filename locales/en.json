@@ -1,0 +1,37 @@
+{
+  "common": {
+    "search": "Search",
+    "loading": "Loading...",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "close": "Close"
+  },
+  "tabs": {
+    "home": "Home",
+    "library": "Library",
+    "statistics": "Statistics",
+    "my": "My"
+  },
+  "home": {
+    "title": "Home",
+    "content": "This is the home screen."
+  },
+  "library": {
+    "title": "Library",
+    "description": "This is the library screen. Books you've read and reading records will be displayed here."
+  },
+  "statistics": {
+    "title": "Statistics",
+    "description": "This is the statistics screen. Reading statistics and progress will be displayed here."
+  },
+  "my": {
+    "title": "My",
+    "description": "This is the my screen. Profile settings and personal information will be displayed here.",
+    "languageSettings": "Language Settings",
+    "korean": "한국어",
+    "english": "English"
+  }
+}

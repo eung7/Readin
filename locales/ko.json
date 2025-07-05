@@ -1,0 +1,37 @@
+{
+  "common": {
+    "search": "검색",
+    "loading": "로딩 중...",
+    "cancel": "취소",
+    "confirm": "확인",
+    "save": "저장",
+    "delete": "삭제",
+    "edit": "편집",
+    "close": "닫기"
+  },
+  "tabs": {
+    "home": "홈",
+    "library": "라이브러리",
+    "statistics": "통계",
+    "my": "마이"
+  },
+  "home": {
+    "title": "홈",
+    "content": "홈 화면입니다."
+  },
+  "library": {
+    "title": "라이브러리",
+    "description": "라이브러리 화면입니다. 여기에 읽은 책들과 독서 기록을 표시할 예정입니다."
+  },
+  "statistics": {
+    "title": "통계",
+    "description": "통계 화면입니다. 여기에 독서 통계와 읽기 진도를 표시할 예정입니다."
+  },
+  "my": {
+    "title": "마이",
+    "description": "마이 화면입니다. 여기에 프로필 설정과 개인 정보를 표시할 예정입니다.",
+    "languageSettings": "언어 설정",
+    "korean": "한국어",
+    "english": "English"
+  }
+}
