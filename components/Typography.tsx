@@ -135,7 +135,7 @@ export const Caption = styled(BaseText)`
 
 // 편의를 위한 컨테이너 컴포넌트들
 export const Container = styled.View`
-  padding: 20px;
+  padding: 0 20px;
 `;
 
 export const Section = styled.View`
