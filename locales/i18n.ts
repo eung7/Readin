@@ -2,8 +2,8 @@ import { getLocales } from "expo-localization";
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 
-import en from "../locales/en.json";
-import ko from "../locales/ko.json";
+import en from "./en.json";
+import ko from "./ko.json";
 
 const resources = {
   en: {

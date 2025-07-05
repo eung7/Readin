@@ -1,4 +1,4 @@
-import { theme } from "@/common/theme";
+import { theme } from "@/constants/theme";
 import { Ionicons } from "@expo/vector-icons";
 import { Tabs } from "expo-router";
 import { useTranslation } from "react-i18next";

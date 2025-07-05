@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { ScrollView, View } from "react-native";
-import { theme } from "../../common/theme";
 import { Body02, Container, Display03 } from "../../components/Typography";
+import { theme } from "../../constants/theme";
 
 export default function LibraryScreen() {
   const { t } = useTranslation();

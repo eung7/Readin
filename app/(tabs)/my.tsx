@@ -1,6 +1,6 @@
-import { theme } from "@/common/theme";
 import { Body02, Container, Display03 } from "@/components/Typography";
-import { useLanguage } from "@/providers/LanguageProvider";
+import { theme } from "@/constants/theme";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { useTranslation } from "react-i18next";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 

@@ -1,9 +1,9 @@
+import { theme } from "@/constants/theme";
+import { LanguageProvider } from "@/contexts/LanguageContext";
+import "@/locales/i18n";
 import { Stack } from "expo-router";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { ThemeProvider } from "styled-components/native";
-import "../common/i18n";
-import { theme } from "../common/theme";
-import { LanguageProvider } from "../providers/LanguageProvider";
 
 export default function RootLayout() {
   return (

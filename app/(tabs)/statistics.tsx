@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { View } from "react-native";
-import { theme } from "../../common/theme";
 import { Body02, Container, Display03 } from "../../components/Typography";
+import { theme } from "../../constants/theme";
 
 export default function StatisticsScreen() {
   const { t } = useTranslation();
