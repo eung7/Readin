@@ -19,6 +19,10 @@
     "title": "홈",
     "content": "홈 화면입니다."
   },
+  "search": {
+    "placeholder": "책 제목, 저자명을 검색하세요",
+    "title": "검색"
+  },
   "library": {
     "title": "라이브러리",
     "description": "라이브러리 화면입니다. 여기에 읽은 책들과 독서 기록을 표시할 예정입니다."
