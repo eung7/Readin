@@ -1,5 +1,5 @@
 import Header from "@/src/components/Header";
-import SearchBookList from "@/src/components/SearchBookList";
+import SearchBookList from "@/src/features/search/components/SearchBookList";
 import SearchInput from "@/src/features/search/components/SearchInput";
 import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";

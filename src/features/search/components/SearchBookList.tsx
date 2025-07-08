@@ -1,10 +1,10 @@
+import { Body01 } from "@/src/components/Typography";
 import { useBookSearchInfinite } from "@/src/features/search/hooks/useBookList";
 import React, { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { ActivityIndicator, FlatList } from "react-native";
 import styled from "styled-components/native";
 import SearchBookListItem from "./SearchBookListItem";
-import { Body01 } from "./Typography";
 
 interface SearchBookListProps {
   searchQuery: string;
@@ -12,16 +12,10 @@ interface SearchBookListProps {
 
 export default function SearchBookList({ searchQuery }: SearchBookListProps) {
   const { t } = useTranslation();
-  const {
-    data,
-    isLoading,
-    error,
-    fetchNextPage,
-    hasNextPage,
-    isFetchingNextPage,
-  } = useBookSearchInfinite({
-    query: searchQuery,
-  });
+  const { data, isLoading, fetchNextPage, hasNextPage, isFetchingNextPage } =
+    useBookSearchInfinite({
+      query: searchQuery,
+    });
 
   // 모든 페이지의 데이터를 평면화
   const books = useMemo(() => {
@@ -76,11 +70,11 @@ export default function SearchBookList({ searchQuery }: SearchBookListProps) {
         ListHeaderComponent={
           books.length > 0 ? (
             <ResultHeader>
-              <Body01>
+              <ResultText>
                 {t("search.result_count", {
                   count: data?.pages[0]?.meta.total_count || 0,
                 })}
-              </Body01>
+              </ResultText>
             </ResultHeader>
           ) : null
         }
@@ -100,13 +94,6 @@ const LoadingContainer = styled.View`
   gap: 10px;
 `;
 
-const ErrorContainer = styled.View`
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-`;
-
 const EmptyContainer = styled.View`
   flex: 1;
   justify-content: center;
@@ -121,8 +108,9 @@ const FooterLoader = styled.View`
 `;
 
 const ResultHeader = styled.View`
-  padding: 4px 0;
-  border-bottom-width: 1px;
-  border-bottom-color: #e0e0e0;
-  margin-bottom: 10px;
+  padding: 0px 0px 12px 0px;
+`;
+
+const ResultText = styled(Body01)`
+  color: ${(p) => p.theme.gray.text_primary};
 `;

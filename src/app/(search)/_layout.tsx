@@ -3,9 +3,14 @@ import React from "react";
 
 export default function _layout() {
   return (
-    <Stack screenOptions={{ headerShown: false }}>
+    <Stack
+      screenOptions={{
+        headerShown: false,
+        contentStyle: { backgroundColor: "white" },
+      }}
+    >
       <Stack.Screen name="search" />
-      <Stack.Screen name="book-detail" />
+      <Stack.Screen name="[id]" />
     </Stack>
   );
 }
