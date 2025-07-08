@@ -1,7 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { View } from "react-native";
 import { Body02, Container, Display03 } from "../../components/Typography";
-import { theme } from "../../constants/theme";
 
 export default function StatisticsScreen() {
   const { t } = useTranslation();
@@ -12,9 +11,7 @@ export default function StatisticsScreen() {
         <Display03 style={{ marginTop: 60, marginBottom: 24 }}>
           {t("statistics.title")}
         </Display03>
-        <Body02 style={{ color: theme.colors.gray[500] }}>
-          {t("statistics.description")}
-        </Body02>
+        <Body02>{t("statistics.description")}</Body02>
       </Container>
     </View>
   );

@@ -1,17 +1,18 @@
-import { theme } from "@/constants/theme";
 import { Ionicons } from "@expo/vector-icons";
 import { Tabs } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useTheme } from "styled-components/native";
 
 export default function TabLayout() {
   const insets = useSafeAreaInsets();
   const { t } = useTranslation();
+  const theme = useTheme();
 
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: theme.colors.primary[700],
+        tabBarActiveTintColor: theme.primary[700],
         tabBarInactiveTintColor: "#666",
         tabBarStyle: {
           borderTopWidth: 1,
@@ -26,7 +27,7 @@ export default function TabLayout() {
       }}
     >
       <Tabs.Screen
-        name="index"
+        name="(home)"
         options={{
           title: t("tabs.home"),
           tabBarIcon: ({ color, size }) => (

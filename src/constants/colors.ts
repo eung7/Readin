@@ -9,7 +9,7 @@ export const primary = {
   700: "#3A7C52",
   800: "#2B6140",
   900: "#1C462E",
-};
+} as const;
 
 // Gray 색상
 export const gray = {
@@ -50,14 +50,8 @@ export const gray = {
   bg_secondary: "#FAFAFA",
   bg_tertiary: "#F5F5F5",
   bg_overlay: "rgba(0, 0, 0, 0.5)",
-};
+} as const;
 
-// Theme 객체
-export const theme = {
-  colors: {
-    primary,
-    gray,
-  },
-};
-
-export type Theme = typeof theme;
+// 테마 타입 정의
+export type PrimaryColors = typeof primary;
+export type GrayColors = typeof gray;

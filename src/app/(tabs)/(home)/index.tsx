@@ -1,4 +1,4 @@
-import Header from "@/components/Header";
+import Header from "@/src/features/home/components/Header";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { SafeAreaView, View } from "react-native";
