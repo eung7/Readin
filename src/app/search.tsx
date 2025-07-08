@@ -22,6 +22,7 @@ export default function SearchBooksScreen() {
       />
       <Content>
         <SearchContainer>
+          <SearchIcon name="search" size={20} color="#666" />
           <SearchInput
             placeholder={t("search.placeholder")}
             placeholderTextColor="#999"
@@ -51,7 +52,7 @@ const Container = styled(SafeAreaView)`
 
 const Content = styled.View`
   flex: 1;
-  padding: 16px;
+  padding: 20px;
 `;
 
 const SearchContainer = styled.View`
@@ -59,7 +60,7 @@ const SearchContainer = styled.View`
   align-items: center;
   background-color: ${({ theme }) => theme.gray.input};
   border-radius: 12px;
-  padding: 12px;
+  padding: 12px 20px 12px 20px;
   margin-bottom: 16px;
   border-width: 1px;
   border-color: ${({ theme }) => theme.gray.border};

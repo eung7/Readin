@@ -12,7 +12,7 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: theme.primary[700],
+        tabBarActiveTintColor: theme.primary[500],
         tabBarInactiveTintColor: "#666",
         tabBarStyle: {
           borderTopWidth: 1,
@@ -27,7 +27,7 @@ export default function TabLayout() {
       }}
     >
       <Tabs.Screen
-        name="(home)"
+        name="index"
         options={{
           title: t("tabs.home"),
           tabBarIcon: ({ color, size }) => (

@@ -2,12 +2,9 @@ import Header from "@/src/components/Header";
 import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
 import React from "react";
-import { useTranslation } from "react-i18next";
 import { SafeAreaView, TouchableOpacity, View } from "react-native";
 
 export default function HomeScreen() {
-  const { t } = useTranslation();
-
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
       <Header
