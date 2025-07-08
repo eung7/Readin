@@ -21,7 +21,12 @@
   },
   "search": {
     "placeholder": "책 제목, 저자명을 검색하세요",
-    "title": "검색"
+    "title": "검색",
+    "result_count": "검색 결과 ({{count}}개)",
+    "searching": "검색 중...",
+    "no_results": "검색 결과가 없습니다.",
+    "error": "검색 오류: {{message}}",
+    "loading_more": "더 불러오는 중..."
   },
   "library": {
     "title": "라이브러리",

@@ -1,8 +1,8 @@
 import axios from "axios";
 
-const API_BASE_URL = "https://dapi.kakao.com/v3/search/book";
+const API_BASE_URL = "https://dapi.kakao.com/";
 
-export const kakaoApiClient = axios.create({
+export const apiClient = axios.create({
   baseURL: API_BASE_URL,
   headers: {
     Authorization: `KakaoAK ${process.env.EXPO_PUBLIC_API_KEY}`,

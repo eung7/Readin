@@ -1,4 +1,4 @@
-import { kakaoApiClient } from "./client";
+import { apiClient } from "./client";
 import {
   BookSearchParams,
   BookSearchResponse,
@@ -39,7 +39,7 @@ export const kakaoBookApi = {
       throw new Error("페이지 크기는 1~50 사이의 값이어야 합니다.");
     }
 
-    const response = await kakaoApiClient.get<BookSearchResponse>(
+    const response = await apiClient.get<BookSearchResponse>(
       "/v3/search/book",
       {
         params: searchParams,

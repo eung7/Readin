@@ -21,7 +21,12 @@
   },
   "search": {
     "placeholder": "Search book titles, authors",
-    "title": "Search"
+    "title": "Search",
+    "result_count": "Search Results ({{count}})",
+    "searching": "Searching...",
+    "no_results": "No search results found.",
+    "error": "Search error: {{message}}",
+    "loading_more": "Loading more..."
   },
   "library": {
     "title": "Library",
