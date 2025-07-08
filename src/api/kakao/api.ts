@@ -25,20 +25,6 @@ export const kakaoBookApi = {
       throw new Error("검색어를 입력해주세요.");
     }
 
-    if (
-      searchParams.page &&
-      (searchParams.page < 1 || searchParams.page > 50)
-    ) {
-      throw new Error("페이지 번호는 1~50 사이의 값이어야 합니다.");
-    }
-
-    if (
-      searchParams.size &&
-      (searchParams.size < 1 || searchParams.size > 50)
-    ) {
-      throw new Error("페이지 크기는 1~50 사이의 값이어야 합니다.");
-    }
-
     const response = await apiClient.get<BookSearchResponse>(
       "/v3/search/book",
       {

@@ -9,6 +9,13 @@ import styled from "styled-components/native";
 
 export default function SearchBooksScreen() {
   const [searchQuery, setSearchQuery] = useState("");
+  const [executeQuery, setExecuteQuery] = useState("");
+
+  const handleSubmitSearch = () => {
+    if (searchQuery.trim()) {
+      setExecuteQuery(searchQuery.trim());
+    }
+  };
 
   return (
     <Container>
@@ -21,8 +28,12 @@ export default function SearchBooksScreen() {
         centerTextKey="search.title"
       />
       <Content>
-        <SearchInput value={searchQuery} onChangeText={setSearchQuery} />
-        <SearchBookList searchQuery={searchQuery} />
+        <SearchInput
+          value={searchQuery}
+          onChangeText={setSearchQuery}
+          onSubmitEditing={handleSubmitSearch}
+        />
+        <SearchBookList searchQuery={executeQuery} />
       </Content>
     </Container>
   );

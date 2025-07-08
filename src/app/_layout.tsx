@@ -16,11 +16,7 @@ export default function RootLayout() {
             <SafeAreaView
               style={{ flex: 1, backgroundColor: theme.gray.white }}
             >
-              <Stack
-                screenOptions={{
-                  headerShown: false,
-                }}
-              />
+              <Stack screenOptions={{ headerShown: false }} />
             </SafeAreaView>
           </SafeAreaProvider>
         </QueryClientProvider>

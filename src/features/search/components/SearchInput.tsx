@@ -7,9 +7,14 @@ import styled from "styled-components/native";
 interface SearchInputProps {
   value: string;
   onChangeText: (text: string) => void;
+  onSubmitEditing?: () => void;
 }
 
-export default function SearchInput({ value, onChangeText }: SearchInputProps) {
+export default function SearchInput({
+  value,
+  onChangeText,
+  onSubmitEditing,
+}: SearchInputProps) {
   const { t } = useTranslation();
 
   return (
@@ -20,6 +25,7 @@ export default function SearchInput({ value, onChangeText }: SearchInputProps) {
         placeholderTextColor="#999"
         value={value}
         onChangeText={onChangeText}
+        onSubmitEditing={onSubmitEditing}
         returnKeyType="search"
       />
       {value.length > 0 && (
