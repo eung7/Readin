@@ -16,7 +16,7 @@ export default function TabLayout() {
         tabBarInactiveTintColor: "#666",
         tabBarStyle: {
           borderTopWidth: 1,
-          height: 60,
+          height: 60 + insets.bottom,
         },
         tabBarLabelStyle: {
           fontSize: 12,
@@ -32,6 +32,15 @@ export default function TabLayout() {
           title: t("tabs.home"),
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="home" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="(search)"
+        options={{
+          title: t("tabs.search"),
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="search" size={size} color={color} />
           ),
         }}
       />

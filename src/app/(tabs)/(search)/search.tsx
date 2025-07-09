@@ -1,10 +1,6 @@
-import Header from "@/src/components/Header";
 import SearchBookList from "@/src/features/search/components/SearchBookList";
 import SearchInput from "@/src/features/search/components/SearchInput";
-import { Ionicons } from "@expo/vector-icons";
-import { router } from "expo-router";
 import React, { useState } from "react";
-import { TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import styled from "styled-components/native";
 
@@ -19,15 +15,7 @@ export default function SearchBooksScreen() {
   };
 
   return (
-    <Container>
-      <Header
-        leftComponent={
-          <TouchableOpacity onPress={() => router.back()}>
-            <Ionicons name="chevron-back-outline" size={24} />
-          </TouchableOpacity>
-        }
-        centerTextKey="search.title"
-      />
+    <Container edges={["top"]}>
       <Content>
         <SearchInput
           value={searchQuery}
@@ -47,5 +35,5 @@ const Container = styled(SafeAreaView)`
 
 const Content = styled.View`
   flex: 1;
-  padding: 20px;
+  padding: 16px 20px 0 20px;
 `;

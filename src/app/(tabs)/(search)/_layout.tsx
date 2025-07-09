@@ -1,7 +1,10 @@
 import { Stack } from "expo-router";
 import React from "react";
+import { useTheme } from "styled-components/native";
 
-export default function _layout() {
+export default function SearchLayout() {
+  const theme = useTheme();
+
   return (
     <Stack
       screenOptions={{

@@ -4,7 +4,7 @@ import { LanguageProvider } from "@/src/contexts/LanguageContext";
 import "@/src/i18n";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { SplashScreen } from "expo-router";
-import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 import { ThemeProvider } from "styled-components/native";
 import AuthLayout from "../components/AuthLayout";
 
@@ -16,11 +16,7 @@ export default function RootLayout() {
       <ThemeProvider theme={theme}>
         <QueryClientProvider client={queryClient}>
           <SafeAreaProvider>
-            <SafeAreaView
-              style={{ flex: 1, backgroundColor: theme.gray.white }}
-            >
-              <AuthLayout />
-            </SafeAreaView>
+            <AuthLayout />
           </SafeAreaProvider>
         </QueryClientProvider>
       </ThemeProvider>

@@ -1,5 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { StyleProp, ViewStyle } from "react-native";
 import styled from "styled-components/native";
 
 interface HeaderProps {
@@ -7,6 +8,7 @@ interface HeaderProps {
   centerTextKey?: string;
   rightComponent?: React.ReactNode;
   showBottomBorder?: boolean;
+  style?: StyleProp<ViewStyle>;
 }
 
 export default function Header({
@@ -14,11 +16,12 @@ export default function Header({
   centerTextKey,
   rightComponent,
   showBottomBorder = false,
+  style,
 }: HeaderProps) {
   const { t } = useTranslation();
 
   return (
-    <Container showBottomBorder={showBottomBorder}>
+    <Container showBottomBorder={showBottomBorder} style={style}>
       <LeftSection>{leftComponent}</LeftSection>
 
       <CenterSection>
