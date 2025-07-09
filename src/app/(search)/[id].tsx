@@ -1,31 +1,40 @@
 import { Document } from "@/src/api/kakao/types";
 import Header from "@/src/components/Header";
+import {
+  Body01,
+  Caption,
+  Display01,
+  Subhead03,
+} from "@/src/components/Typography";
 import { Ionicons } from "@expo/vector-icons";
 import { useLocalSearchParams, useRouter } from "expo-router";
-import React from "react";
-import {
-  Image,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import React, { useState } from "react";
+import { Image, ScrollView, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import styled from "styled-components/native";
 
 export default function BookDetailScreen() {
   const { id, bookData } = useLocalSearchParams();
   const router = useRouter();
+  const [imageError, setImageError] = useState(false);
 
   // bookData는 JSON string으로 전달될 예정
   const book: Document = bookData ? JSON.parse(bookData as string) : null;
 
   if (!book) {
     return (
-      <SafeAreaView style={styles.container}>
-        <Text>책 정보를 불러올 수 없습니다.</Text>
-      </SafeAreaView>
+      <Container edges={["bottom", "left", "right"]}>
+        <Header
+          leftComponent={
+            <TouchableOpacity onPress={() => router.back()}>
+              <Ionicons name="chevron-back" size={24} />
+            </TouchableOpacity>
+          }
+        />
+        <ErrorContainer>
+          <Body01>책 정보를 불러올 수 없습니다.</Body01>
+        </ErrorContainer>
+      </Container>
     );
   }
 
@@ -35,7 +44,7 @@ export default function BookDetailScreen() {
       const year = date.getFullYear();
       const month = String(date.getMonth() + 1).padStart(2, "0");
       const day = String(date.getDate()).padStart(2, "0");
-      return `${year}-${month}-${day}`;
+      return `${year}.${month}.${day}`;
     } catch {
       return dateString;
     }
@@ -50,33 +59,62 @@ export default function BookDetailScreen() {
           </TouchableOpacity>
         }
       />
-      <ScrollView style={{ flex: 1, backgroundColor: "blue" }}>
-        {/* 기본 정보 */}
-        <View style={styles.content}>
-          <Text style={styles.label}>ID: {id}</Text>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <Content>
+          {/* 책 이미지 */}
+          <BookImageSection>
+            {book.thumbnail && !imageError ? (
+              <BookImage
+                source={{ uri: book.thumbnail }}
+                onError={() => setImageError(true)}
+                resizeMode="cover"
+              />
+            ) : (
+              <PlaceholderImage>
+                <Ionicons name="book-outline" size={48} color="#9CA3AF" />
+              </PlaceholderImage>
+            )}
+          </BookImageSection>
 
-          <Image
-            source={{ uri: book.thumbnail }}
-            style={styles.bookImage}
-            resizeMode="cover"
-          />
+          {/* 책 기본 정보 */}
+          <BookInfoSection>
+            <BookTitle numberOfLines={3}>{book.title}</BookTitle>
 
-          <Text style={styles.title}>{book.title}</Text>
-          <Text style={styles.author}>저자: {book.authors.join(", ")}</Text>
-          <Text style={styles.publisher}>출판사: {book.publisher}</Text>
-          <Text style={styles.date}>출간일: {formatDate(book.datetime)}</Text>
-          <Text style={styles.isbn}>ISBN: {book.isbn || "N/A"}</Text>
-          <Text style={styles.price}>
-            가격: {book.price ? `${book.price.toLocaleString()}원` : "N/A"}
-          </Text>
+            <AuthorInfo>
+              <AuthorText numberOfLines={2}>
+                {book.authors.join(", ")}
+              </AuthorText>
+              <PublisherText>{book.publisher}</PublisherText>
+            </AuthorInfo>
 
+            <DateText>{formatDate(book.datetime)}</DateText>
+          </BookInfoSection>
+
+          {/* 추가 정보 */}
+          <MetaSection>
+            {book.isbn && (
+              <MetaItem>
+                <MetaLabel>ISBN</MetaLabel>
+                <MetaValue>{book.isbn}</MetaValue>
+              </MetaItem>
+            )}
+
+            {book.price && (
+              <MetaItem>
+                <MetaLabel>가격</MetaLabel>
+                <MetaValue>{book.price.toLocaleString()}원</MetaValue>
+              </MetaItem>
+            )}
+          </MetaSection>
+
+          {/* 책 소개 */}
           {book.contents && (
-            <View style={styles.contentsSection}>
-              <Text style={styles.contentsTitle}>책 소개:</Text>
-              <Text style={styles.contents}>{book.contents}</Text>
-            </View>
+            <DescriptionSection>
+              <SectionTitle>책 소개</SectionTitle>
+              <DescriptionText>{book.contents}</DescriptionText>
+            </DescriptionSection>
           )}
-        </View>
+        </Content>
       </ScrollView>
     </Container>
   );
@@ -84,74 +122,104 @@ export default function BookDetailScreen() {
 
 const Container = styled(SafeAreaView)`
   flex: 1;
+  background-color: ${({ theme }) => theme.gray.bg_primary};
 `;
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "red",
-  },
-  scrollView: {
-    flex: 1,
-  },
+const Content = styled.View`
+  padding: 0 20px 40px;
+`;
 
-  content: {
-    padding: 20,
-  },
-  label: {
-    fontSize: 14,
-    color: "#666",
-    marginBottom: 16,
-  },
-  bookImage: {
-    width: 120,
-    height: 160,
-    borderRadius: 8,
-    marginBottom: 16,
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: "700",
-    color: "#333",
-    marginBottom: 8,
-  },
-  author: {
-    fontSize: 16,
-    color: "#666",
-    marginBottom: 4,
-  },
-  publisher: {
-    fontSize: 14,
-    color: "#888",
-    marginBottom: 4,
-  },
-  date: {
-    fontSize: 14,
-    color: "#888",
-    marginBottom: 4,
-  },
-  isbn: {
-    fontSize: 14,
-    color: "#888",
-    marginBottom: 4,
-  },
-  price: {
-    fontSize: 14,
-    color: "#888",
-    marginBottom: 16,
-  },
-  contentsSection: {
-    marginTop: 16,
-  },
-  contentsTitle: {
-    fontSize: 16,
-    fontWeight: "600",
-    color: "#333",
-    marginBottom: 8,
-  },
-  contents: {
-    fontSize: 14,
-    lineHeight: 20,
-    color: "#555",
-  },
-});
+const ErrorContainer = styled.View`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+`;
+
+const BookImageSection = styled.View`
+  align-items: center;
+  padding: 24px 0 32px;
+`;
+
+const BookImage = styled(Image)`
+  width: 160px;
+  height: 220px;
+  border-radius: 12px;
+  background-color: ${({ theme }) => theme.gray.bg_tertiary};
+`;
+
+const PlaceholderImage = styled.View`
+  width: 160px;
+  height: 220px;
+  border-radius: 12px;
+  background-color: ${({ theme }) => theme.gray.bg_tertiary};
+  justify-content: center;
+  align-items: center;
+  border: 1px solid ${({ theme }) => theme.gray.border};
+`;
+
+const BookInfoSection = styled.View`
+  margin-bottom: 32px;
+`;
+
+const BookTitle = styled(Display01)`
+  color: ${({ theme }) => theme.gray.text_primary};
+  text-align: center;
+  margin-bottom: 16px;
+`;
+
+const AuthorInfo = styled.View`
+  align-items: center;
+  margin-bottom: 8px;
+`;
+
+const AuthorText = styled(Subhead03)`
+  color: ${({ theme }) => theme.gray.text_secondary};
+  text-align: center;
+  margin-bottom: 4px;
+`;
+
+const PublisherText = styled(Body01)`
+  color: ${({ theme }) => theme.gray.text_tertiary};
+  text-align: center;
+`;
+
+const DateText = styled(Caption)`
+  color: ${({ theme }) => theme.gray.text_tertiary};
+  text-align: center;
+`;
+
+const MetaSection = styled.View`
+  background-color: ${({ theme }) => theme.gray.bg_secondary};
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 24px;
+  gap: 16px;
+`;
+
+const MetaItem = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const MetaLabel = styled(Body01)`
+  color: ${({ theme }) => theme.gray.text_secondary};
+`;
+
+const MetaValue = styled(Body01)`
+  color: ${({ theme }) => theme.gray.text_primary};
+  font-family: "Pretendard-Medium";
+`;
+
+const DescriptionSection = styled.View`
+  gap: 16px;
+`;
+
+const SectionTitle = styled(Subhead03)`
+  color: ${({ theme }) => theme.gray.text_primary};
+`;
+
+const DescriptionText = styled(Body01)`
+  color: ${({ theme }) => theme.gray.text_secondary};
+  line-height: 24px;
+`;

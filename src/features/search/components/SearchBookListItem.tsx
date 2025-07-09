@@ -44,7 +44,7 @@ export default function SearchBookListItem({ book }: SearchBookListItemProps) {
       },
     });
   };
-
+  
   return (
     <Container>
       <Pressable
