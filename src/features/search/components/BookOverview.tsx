@@ -66,9 +66,8 @@ const BookOverviewSection = styled.View`
   flex-direction: row;
   padding: 24px 20px 32px;
   gap: 20px;
-  background-color: ${({ theme }) => theme.primary[900]};
-  border-radius: 0 0 16px 16px;
-  margin: 0 -20px 24px -20px;
+  background-color: ${({ theme }) => theme.gray.bg_primary};
+  margin: 0 -20px 0px -20px;
   align-items: flex-end;
 `;
 
@@ -99,7 +98,7 @@ const BookInfoContainer = styled.View`
 `;
 
 const BookTitle = styled(Display01)`
-  color: ${({ theme }) => theme.gray.white};
+  color: ${({ theme }) => theme.gray.text_primary};
   margin-bottom: 12px;
 `;
 
@@ -108,16 +107,16 @@ const AuthorInfo = styled.View`
 `;
 
 const AuthorText = styled(Subhead03)`
-  color: ${({ theme }) => theme.gray.white};
+  color: ${({ theme }) => theme.gray.text_secondary};
   opacity: 0.9;
 `;
 
 const PublisherText = styled(Body01)`
-  color: ${({ theme }) => theme.gray.white};
+  color: ${({ theme }) => theme.gray.text_secondary};
   opacity: 0.8;
 `;
 
 const DateText = styled(Caption)`
-  color: ${({ theme }) => theme.gray.white};
+  color: ${({ theme }) => theme.gray.text_secondary};
   opacity: 0.8;
 `;

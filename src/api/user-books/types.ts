@@ -1,20 +1,18 @@
-import { Tables, TablesInsert } from "@/src/types/supabase";
-import { supabase } from "@/src/utils/supabase";
+import { Tables } from "@/src/types/supabase";
 
 export type BookStatus = "wishlist" | "reading" | "completed" | "stopped";
 export type UserBook = Tables<"user_books">;
 
 export interface CreateUserBookData {
-  bookdId: string;
+  bookId: string;
   userId: string;
-  status?: BookStatus;
-  rating?: number;
-  comment?: string;
+  status: BookStatus | null;
+  rating: number;
+  comment: string | null;
 }
 
 export interface UpdateUserBookData {
-  status?: BookStatus;
-  rating?: number;
-  comment?: string;
+  status: BookStatus | null;
+  rating: number;
+  comment: string | null;
 }
-

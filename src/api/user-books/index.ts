@@ -7,7 +7,7 @@ import { BookStatus, CreateUserBookData, UpdateUserBookData } from "./types";
  */
 export const upsertUserBook = async (data: CreateUserBookData) => {
   const userBookData: TablesInsert<"user_books"> = {
-    book_id: data.bookdId,
+    book_id: data.bookId,
     user_id: data.userId,
     status: data.status,
     rating: data.rating,
