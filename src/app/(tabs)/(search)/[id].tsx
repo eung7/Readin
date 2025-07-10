@@ -13,8 +13,11 @@ import { Ionicons } from "@expo/vector-icons";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import React, { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { ScrollView, TouchableOpacity, View } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { ScrollView, TouchableOpacity } from "react-native";
+import {
+  SafeAreaView,
+  useSafeAreaInsets,
+} from "react-native-safe-area-context";
 import styled, { useTheme } from "styled-components/native";
 
 export default function BookDetailScreen() {
@@ -72,8 +75,13 @@ export default function BookDetailScreen() {
     saveBookData(status, newRating, comment);
   };
 
+  const handleCommentChange = (newComment: string) => {
+    setComment(newComment);
+    saveBookData(status, rating, newComment);
+  };
+
   return (
-    <Container paddingTop={insets.top}>
+    <Container edges={["top"]}>
       <Header
         leftComponent={
           <TouchableOpacity onPress={() => router.back()}>
@@ -85,10 +93,10 @@ export default function BookDetailScreen() {
       <ScrollView
         showsVerticalScrollIndicator={false}
         style={{ backgroundColor: "#fff" }}
-        bounces={false}
       >
         <Content>
           {/* 책 기본 정보 */}
+
           <BookOverview book={book} />
 
           {/* 상태 선택 */}
@@ -104,8 +112,17 @@ export default function BookDetailScreen() {
             onRatingChange={handleRatingChange}
           />
 
+          {/* Separator */}
+          <Separator />
+
           {/* 코멘트 */}
-          <BookComment comment={comment} onCommentChange={setComment} />
+          <BookComment
+            comment={comment}
+            onCommentChange={handleCommentChange}
+          />
+
+          {/* Separator */}
+          <Separator />
 
           {/* 책 소개 */}
           {book.contents && (
@@ -120,9 +137,9 @@ export default function BookDetailScreen() {
   );
 }
 
-const Container = styled(View)<{ paddingTop: number }>`
+const Container = styled(SafeAreaView)`
   flex: 1;
-  padding-top: ${({ paddingTop }) => paddingTop}px;
+  background-color: ${({ theme }) => theme.gray.bg_primary};
 `;
 
 const Content = styled.View`
@@ -140,4 +157,10 @@ const SectionTitle = styled(Subhead03)`
 const DescriptionText = styled(Body01)`
   color: ${({ theme }) => theme.gray.text_secondary};
   line-height: 24px;
+`;
+
+const Separator = styled.View`
+  height: 1px;
+  background-color: ${({ theme }) => theme.gray.border};
+  margin: 24px 0;
 `;

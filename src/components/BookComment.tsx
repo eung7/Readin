@@ -1,7 +1,10 @@
+import { Ionicons } from "@expo/vector-icons";
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Modal, Pressable, TouchableOpacity } from "react-native";
-import styled from "styled-components/native";
+import { Modal, Platform, Pressable } from "react-native";
+import { EdgeInsets, useSafeAreaInsets } from "react-native-safe-area-context";
+import styled, { useTheme } from "styled-components/native";
+import Header from "./Header";
 import { Body01, Subhead03 } from "./Typography";
 
 interface BookCommentProps {
@@ -14,8 +17,10 @@ export default function BookComment({
   onCommentChange,
 }: BookCommentProps) {
   const { t } = useTranslation();
+  const theme = useTheme();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [tempComment, setTempComment] = useState(comment);
+  const insets = useSafeAreaInsets();
 
   const handleOpenModal = () => {
     setTempComment(comment);
@@ -39,36 +44,44 @@ export default function BookComment({
       <CommentSection>
         <SectionTitle>{t("bookDetail.comment")}</SectionTitle>
         <CommentContainer>
-          <TouchableOpacity onPress={handleOpenModal}>
+          <Pressable onPress={handleOpenModal}>
             <CommentInputPreview>
               <CommentInputText isPlaceholder={!comment}>
                 {comment || placeholderText}
               </CommentInputText>
             </CommentInputPreview>
-          </TouchableOpacity>
-          {comment && (
-            <CommentPreview>
-              <CommentText>{comment}</CommentText>
-            </CommentPreview>
-          )}
+          </Pressable>
         </CommentContainer>
       </CommentSection>
+
       <Modal
         visible={isModalVisible}
         animationType="slide"
         presentationStyle="fullScreen"
         onRequestClose={handleCancel}
       >
-        <ModalContainer>
-          <ModalHeader>
-            <CancelButton onPress={handleCancel}>
-              <ButtonText>{t("common.cancel")}</ButtonText>
-            </CancelButton>
-            <ModalTitle>{t("bookDetail.comment")}</ModalTitle>
-            <SaveButton onPress={handleSave}>
-              <SaveButtonText>{t("common.save")}</SaveButtonText>
-            </SaveButton>
-          </ModalHeader>
+        <ModalContainer
+          insets={insets}
+          behavior={Platform.OS === "ios" ? "padding" : "height"}
+        >
+          <Header
+            leftComponent={
+              <CancelButton onPress={handleCancel}>
+                <Ionicons
+                  name="close"
+                  size={24}
+                  color={theme.gray.text_tertiary}
+                />
+              </CancelButton>
+            }
+            centerTextKey="bookDetail.comment"
+            rightComponent={
+              <SaveButton onPress={handleSave}>
+                <SaveButtonText>{t("common.save")}</SaveButtonText>
+              </SaveButton>
+            }
+            showBottomBorder={true}
+          />
 
           <ModalContent>
             <CommentTextArea
@@ -86,7 +99,7 @@ export default function BookComment({
 }
 
 const CommentSection = styled.View`
-  margin-bottom: 24px;
+  flex: 1;
 `;
 
 const SectionTitle = styled(Subhead03)`
@@ -101,7 +114,7 @@ const CommentContainer = styled.View`
 const CommentInputPreview = styled.View`
   background-color: ${({ theme }) => theme.gray.bg_secondary};
   border-radius: 12px;
-  padding: 16px;
+  padding: 12px;
   border: 1px solid ${({ theme }) => theme.gray.border};
   min-height: 96px;
   justify-content: flex-start;
@@ -125,24 +138,11 @@ const CommentText = styled(Body01)`
   line-height: 24px;
 `;
 
-const ModalContainer = styled.View`
+const ModalContainer = styled.KeyboardAvoidingView<{ insets: EdgeInsets }>`
   flex: 1;
   background-color: ${({ theme }) => theme.gray.bg_primary};
-`;
-
-const ModalHeader = styled.View`
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 16px 20px;
-  border-bottom-width: 1px;
-  border-bottom-color: ${({ theme }) => theme.gray.border};
-`;
-
-const ModalTitle = styled(Subhead03)`
-  color: ${({ theme }) => theme.gray.text_primary};
-  flex: 1;
-  text-align: center;
+  padding-top: ${({ insets }) => insets.top}px;
+  padding-bottom: ${({ insets }) => insets.bottom}px;
 `;
 
 const CancelButton = styled(Pressable)`
@@ -153,10 +153,6 @@ const SaveButton = styled(Pressable)`
   padding: 8px;
 `;
 
-const ButtonText = styled(Body01)`
-  color: ${({ theme }) => theme.gray.text_secondary};
-`;
-
 const SaveButtonText = styled(Body01)`
   color: ${({ theme }) => theme.primary[500]};
   font-weight: 600;
@@ -165,6 +161,7 @@ const SaveButtonText = styled(Body01)`
 const ModalContent = styled.View`
   flex: 1;
   padding: 20px;
+  margin-bottom: 24px;
 `;
 
 const CommentTextArea = styled.TextInput`

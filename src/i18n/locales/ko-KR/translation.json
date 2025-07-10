@@ -55,7 +55,7 @@
     "rating": "평점",
     "rateBook": "평가하기",
     "points": "{{rating}}점",
-    "comment": "내 코멘트",
+    "comment": "코멘트",
     "commentPlaceholder": "이 책에 대한 생각을 남겨보세요...",
     "bookIntro": "책 소개",
     "errorLoadingBook": "책 정보를 불러올 수 없습니다."

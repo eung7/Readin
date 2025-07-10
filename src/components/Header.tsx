@@ -39,6 +39,7 @@ const Container = styled.View<{ showBottomBorder: boolean }>`
   justify-content: space-between;
   height: 44px;
   padding: 0 20px;
+  background-color: ${({ theme }) => theme.gray.bg_primary};
   ${({ showBottomBorder, theme }) =>
     showBottomBorder &&
     `

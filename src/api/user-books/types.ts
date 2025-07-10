@@ -1,6 +1,6 @@
 import { Tables } from "@/src/types/supabase";
 
-export type BookStatus = "wishlist" | "reading" | "completed" | "stopped";
+export type BookStatus = "wishlist" | "reading" | "read" | "paused";
 export type UserBook = Tables<"user_books">;
 
 export interface CreateUserBookData {

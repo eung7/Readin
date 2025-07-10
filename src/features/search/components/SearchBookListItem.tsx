@@ -37,14 +37,14 @@ export default function SearchBookListItem({ book }: SearchBookListItemProps) {
   const handlePress = () => {
     const bookId = book.isbn || book.title;
     router.push({
-      pathname: "/(search)/[id]",
+      pathname: "/(tabs)/(search)/[id]",
       params: {
         id: bookId,
         bookData: JSON.stringify(book),
       },
     });
   };
-  
+
   return (
     <Container>
       <Pressable
@@ -102,11 +102,6 @@ const BookCard = styled.View`
   padding: 20px;
   flex-direction: row;
   align-items: center;
-  shadow-color: #000000;
-  shadow-offset: 0px 2px;
-  shadow-opacity: 0.04;
-  shadow-radius: 12px;
-  elevation: 2;
   border: 1px solid ${(p) => p.theme.gray.border};
 `;
 

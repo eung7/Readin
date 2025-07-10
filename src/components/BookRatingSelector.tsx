@@ -32,28 +32,34 @@ export default function BookRatingSelector({
     const isHalfStar = rating >= starIndex - 0.5 && rating < starIndex;
 
     return (
-      <TouchableOpacity
-        key={starIndex}
-        onPress={() => handleStarPress(starIndex)}
-        style={{ marginRight: 8 }}
-      >
-        {isHalfStar ? (
-          <View style={{ position: "relative" }}>
-            <Ionicons name="star-outline" size={40} color="#E5E7EB" />
-            <View
-              style={{ position: "absolute", overflow: "hidden", width: "50%" }}
-            >
-              <Ionicons name="star" size={40} color={theme.primary[900]} />
+      <>
+        <TouchableOpacity
+          key={starIndex}
+          onPress={() => handleStarPress(starIndex)}
+          style={{ marginRight: 8 }}
+        >
+          {isHalfStar ? (
+            <View style={{ position: "relative" }}>
+              <Ionicons name="star-outline" size={40} color="#E5E7EB" />
+              <View
+                style={{
+                  position: "absolute",
+                  overflow: "hidden",
+                  width: "50%",
+                }}
+              >
+                <Ionicons name="star" size={40} color={theme.primary[900]} />
+              </View>
             </View>
-          </View>
-        ) : (
-          <Ionicons
-            name={isFullStar ? "star" : "star-outline"}
-            size={40}
-            color={isFullStar ? theme.primary[900] : "#E5E7EB"}
-          />
-        )}
-      </TouchableOpacity>
+          ) : (
+            <Ionicons
+              name={isFullStar ? "star" : "star-outline"}
+              size={40}
+              color={isFullStar ? theme.primary[900] : "#E5E7EB"}
+            />
+          )}
+        </TouchableOpacity>
+      </>
     );
   };
 
@@ -71,7 +77,6 @@ export default function BookRatingSelector({
 const Container = styled.View`
   width: 100%;
   align-items: center;
-  margin-bottom: 24px;
 `;
 
 const RatingContainer = styled.View`

@@ -49,13 +49,13 @@
     "statuses": {
       "wishlist": "Wishlist",
       "reading": "Reading",
-      "completed": "Completed",
-      "stopped": "Stopped"
+      "completed": "Read",
+      "stopped": "Paused"
     },
     "rating": "Rating",
     "rateBook": "Rate this book",
     "points": "{{rating}} stars",
-    "comment": "My Comment",
+    "comment": "Comment",
     "commentPlaceholder": "Share your thoughts about this book...",
     "bookIntro": "Book Introduction",
     "errorLoadingBook": "Unable to load book information."
