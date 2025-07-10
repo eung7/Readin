@@ -7,6 +7,7 @@ import { useLocalSearchParams, useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import { ScrollView, TouchableOpacity, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import styled, { useTheme } from "styled-components/native";
 
 type BookStatus = "wishlist" | "reading" | "completed" | "stopped";
@@ -18,13 +19,14 @@ export default function BookDetailScreen() {
   const [status, setStatus] = useState<BookStatus>("wishlist");
   const [comment, setComment] = useState("");
   const theme = useTheme();
+  const insets = useSafeAreaInsets();
 
   // bookData는 JSON string으로 전달될 예정
   const book: Document = bookData ? JSON.parse(bookData as string) : null;
 
   if (!book) {
     return (
-      <Container>
+      <Container paddingTop={insets.top}>
         <Header
           leftComponent={
             <TouchableOpacity onPress={() => router.back()}>
@@ -40,8 +42,8 @@ export default function BookDetailScreen() {
   }
 
   return (
-    <Container>
-      <StatusBar style="dark" backgroundColor={theme.primary[900]} />
+    <Container paddingTop={insets.top}>
+      <StatusBar style="light" />
       <Header
         leftComponent={
           <TouchableOpacity onPress={() => router.back()}>
@@ -178,9 +180,10 @@ export default function BookDetailScreen() {
   );
 }
 
-const Container = styled(View)`
+const Container = styled(View)<{ paddingTop: number }>`
   flex: 1;
-  background-color: ${({ theme }) => theme.gray.bg_primary};
+  background-color: ${({ theme }) => theme.primary[900]};
+  padding-top: ${({ paddingTop }) => paddingTop}px;
 `;
 
 const Content = styled.View`

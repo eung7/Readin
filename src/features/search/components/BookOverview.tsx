@@ -51,8 +51,9 @@ export default function BookOverview({ book }: BookOverviewProps) {
         <BookTitle numberOfLines={3}>{book.title}</BookTitle>
 
         <AuthorInfo>
-          <AuthorText numberOfLines={2}>{book.authors.join(", ")}</AuthorText>
-          <PublisherText>{book.publisher}</PublisherText>
+          <AuthorText numberOfLines={1}>
+            {book.authors.join(" · ") + " · " + book.publisher}
+          </AuthorText>
         </AuthorInfo>
 
         <DateText>{formatDate(book.datetime)}</DateText>
@@ -95,7 +96,6 @@ const PlaceholderImage = styled.View`
 const BookInfoContainer = styled.View`
   flex: 1;
   justify-content: flex-end;
-  gap: 8px;
 `;
 
 const BookTitle = styled(Display01)`
@@ -104,12 +104,11 @@ const BookTitle = styled(Display01)`
 `;
 
 const AuthorInfo = styled.View`
-  margin-bottom: 8px;
+  margin-bottom: 4px;
 `;
 
 const AuthorText = styled(Subhead03)`
   color: ${({ theme }) => theme.gray.white};
-  margin-bottom: 4px;
   opacity: 0.9;
 `;
 
