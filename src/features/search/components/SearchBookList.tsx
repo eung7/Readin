@@ -1,5 +1,5 @@
 import { Body01 } from "@/src/components/Typography";
-import { useBookSearchInfinite } from "@/src/features/search/hooks/useBookList";
+import { useInfiniteSearchKakaoBook } from "@/src/hooks/queries/kakao/useSearchBook";
 import React, { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { ActivityIndicator, FlatList } from "react-native";
@@ -13,7 +13,7 @@ interface SearchBookListProps {
 export default function SearchBookList({ searchQuery }: SearchBookListProps) {
   const { t } = useTranslation();
   const { data, isLoading, fetchNextPage, hasNextPage, isFetchingNextPage } =
-    useBookSearchInfinite({
+    useInfiniteSearchKakaoBook({
       query: searchQuery,
     });
 

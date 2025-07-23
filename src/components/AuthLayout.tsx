@@ -1,9 +1,11 @@
 import { SplashScreen, Stack } from "expo-router";
 import React, { useEffect } from "react";
-import { createAnonymousUser } from "../api/user";
+import { useCreateAnonymous } from "../hooks/queries/auth/useCreateAnonymous";
 import { supabase } from "../utils/supabase";
 
 export default function AuthLayout() {
+  const { mutate: createAnonymous } = useCreateAnonymous();
+
   useEffect(() => {
     supabase.auth.getSession().then(({ data }) => {
       if (data.session) {
@@ -11,7 +13,7 @@ export default function AuthLayout() {
       } else {
         supabase.auth.signInAnonymously().then(({ data }) => {
           if (data.user) {
-            createAnonymousUser(data.user.id);
+            createAnonymous(data.user.id);
             SplashScreen.hideAsync();
           }
         });

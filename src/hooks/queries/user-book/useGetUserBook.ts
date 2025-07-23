@@ -1,12 +1,23 @@
-import { getUserBook } from "@/src/api/user-books";
+import { supabase } from "@/src/utils/supabase";
 import { useQuery } from "@tanstack/react-query";
 
-export const useUserBook = (userId?: string, bookId?: string) => {
+export const useGetUserBook = (userId?: string, bookId?: string) => {
   const { data: userBook, isLoading } = useQuery({
     queryKey: ["book", userId, bookId],
     queryFn: async () => {
-      const userBook = await getUserBook(bookId!, userId!);
-      return userBook;
+      const { data, error } = await supabase
+        .from("user_books")
+        .select("*")
+        .eq("book_id", bookId)
+        .eq("user_id", userId)
+        .single();
+
+      if (error && error.code !== "PGRST116") {
+        console.log("Error getting user book:", error);
+        throw error;
+      }
+
+      return data;
     },
     enabled: !!userId && !!bookId,
     staleTime: 0, // 데이터가 즉시 stale 상태가 됨

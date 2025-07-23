@@ -1,41 +1,36 @@
-import { Document } from "@/src/api/kakao/types";
-import { BookStatus } from "@/src/api/user-books/types";
 import BookComment from "@/src/components/BookComment";
 import BookRatingSelector from "@/src/components/BookRatingSelector";
 import BookStatusSelector from "@/src/components/BookStatusSelector";
 import Header from "@/src/components/Header";
 import { Body01, Subhead03 } from "@/src/components/Typography";
 import BookOverview from "@/src/features/search/components/BookOverview";
-import { useSaveUserBook } from "@/src/features/search/hooks/useSaveUserBook";
-import { useUserBook } from "@/src/features/search/hooks/useUserBook";
+import { useGetUserBook } from "@/src/hooks/queries/user-book/useGetUserBook";
+import { useUpsertUserBook } from "@/src/hooks/queries/user-book/useUpsertUserBook";
 import { useUser } from "@/src/hooks/useUser";
+import { BookStatus } from "@/src/types/book";
+import { KakaoBook } from "@/src/types/kakao";
 import { Ionicons } from "@expo/vector-icons";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import React, { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { ScrollView, TouchableOpacity } from "react-native";
-import {
-  SafeAreaView,
-  useSafeAreaInsets,
-} from "react-native-safe-area-context";
-import styled, { useTheme } from "styled-components/native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import styled from "styled-components/native";
 
 export default function BookDetailScreen() {
-  const { id, bookData } = useLocalSearchParams();
+  const { bookData } = useLocalSearchParams();
   const router = useRouter();
   const [rating, setRating] = useState(0);
   const [status, setStatus] = useState<BookStatus | null>(null);
   const [comment, setComment] = useState("");
-  const theme = useTheme();
-  const insets = useSafeAreaInsets();
   const { t } = useTranslation();
   const { user } = useUser();
-  const book: Document = bookData ? JSON.parse(bookData as string) : null;
-  const { userBook, isLoading: isUserBookLoading } = useUserBook(
+  const book: KakaoBook = bookData ? JSON.parse(bookData as string) : null;
+  const { userBook, isLoading: isUserBookLoading } = useGetUserBook(
     user?.id,
     book?.isbn
   );
-  const { mutate: saveUserBook } = useSaveUserBook();
+  const { mutate: upsertUserBook } = useUpsertUserBook();
 
   useEffect(() => {
     if (userBook) {
@@ -52,8 +47,8 @@ export default function BookDetailScreen() {
       newComment: string | null
     ) => {
       if (user && book) {
-        saveUserBook({
-          book: book,
+        upsertUserBook({
+          kakaoBook: book,
           bookId: book.isbn,
           userId: user.id,
           status: newStatus,
@@ -62,7 +57,7 @@ export default function BookDetailScreen() {
         });
       }
     },
-    [user, book, saveUserBook]
+    [user, book, upsertUserBook]
   );
 
   const handleStatusChange = (newStatus: BookStatus | null) => {

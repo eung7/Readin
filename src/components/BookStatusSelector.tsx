@@ -1,4 +1,4 @@
-import { BookStatus } from "@/src/api/user-books/types";
+import { BookStatus } from "@/src/supabase/user-book/types";
 import { Ionicons } from "@expo/vector-icons";
 import React, { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
