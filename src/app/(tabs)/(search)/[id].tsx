@@ -1,9 +1,9 @@
-import BookComment from "@/src/components/BookComment";
-import BookRatingSelector from "@/src/components/BookRatingSelector";
-import BookStatusSelector from "@/src/components/BookStatusSelector";
 import Header from "@/src/components/Header";
 import { Body01, Subhead03 } from "@/src/components/Typography";
+import BookComment from "@/src/features/search/components/BookComment";
 import BookOverview from "@/src/features/search/components/BookOverview";
+import BookRatingSelector from "@/src/features/search/components/BookRatingSelector";
+import BookStatusSelector from "@/src/features/search/components/BookStatusSelector";
 import { useGetUserBook } from "@/src/hooks/queries/user-book/useGetUserBook";
 import { useUpsertUserBook } from "@/src/hooks/queries/user-book/useUpsertUserBook";
 import { useUser } from "@/src/hooks/useUser";

@@ -4,8 +4,8 @@ import { useTranslation } from "react-i18next";
 import { Modal, Platform, Pressable } from "react-native";
 import { EdgeInsets, useSafeAreaInsets } from "react-native-safe-area-context";
 import styled, { useTheme } from "styled-components/native";
-import Header from "./Header";
-import { Body01, Subhead03 } from "./Typography";
+import Header from "../../../components/Header";
+import { Body01, Subhead03 } from "../../../components/Typography";
 
 interface BookCommentProps {
   comment: string;

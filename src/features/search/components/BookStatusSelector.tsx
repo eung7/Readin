@@ -4,7 +4,7 @@ import React, { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { Animated, TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
-import { Caption } from "./Typography";
+import { Caption } from "../../../components/Typography";
 
 interface BookStatusSelectorProps {
   status: BookStatus | null;
