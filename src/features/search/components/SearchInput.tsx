@@ -46,7 +46,7 @@ const SearchContainer = styled.View`
   background-color: ${({ theme }) => theme.gray.input};
   border-radius: 12px;
   padding: 8px 16px 8px 20px;
-  margin-bottom: 16px;
+  margin: 0 20px 16px 20px;
   border-width: 1px;
   border-color: ${({ theme }) => theme.gray.border};
 `;

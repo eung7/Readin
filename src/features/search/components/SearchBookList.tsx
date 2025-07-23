@@ -113,4 +113,5 @@ const ResultHeader = styled.View`
 
 const ResultText = styled(Body01)`
   color: ${(p) => p.theme.gray.text_primary};
+  margin: 0 20px 0 20px;
 `;

@@ -1,4 +1,4 @@
-import { Document } from "@/src/api/kakao/types";
+import { KakaoBook } from "@/src/types/kakao";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
@@ -13,7 +13,7 @@ import { Body01, Caption, Subhead03 } from "../../../components/Typography";
 import { gray } from "../../../constants/colors";
 
 interface SearchBookListItemProps {
-  book: Document;
+  book: KakaoBook;
 }
 
 export default function SearchBookListItem({ book }: SearchBookListItemProps) {
@@ -46,7 +46,13 @@ export default function SearchBookListItem({ book }: SearchBookListItemProps) {
   };
 
   return (
-    <Container>
+    <Container
+      style={{
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 3 },
+        shadowOpacity: 0.2,
+      }}
+    >
       <Pressable
         onPress={handlePress}
         onPressIn={() => (scale.value = withTiming(0.95, { duration: 100 }))}
@@ -93,7 +99,7 @@ export default function SearchBookListItem({ book }: SearchBookListItemProps) {
 }
 
 const Container = styled.View`
-  margin-bottom: 8px;
+  margin: 0 20px 8px 20px;
 `;
 
 const BookCard = styled.View`
@@ -113,6 +119,7 @@ const BookImage = styled(Image)`
   width: 64px;
   height: 80px;
   border-radius: 8px;
+  border-width: 1px;
   background-color: ${(p) => p.theme.gray.bg_tertiary};
 `;
 

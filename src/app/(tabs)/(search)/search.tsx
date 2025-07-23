@@ -35,5 +35,5 @@ const Container = styled(SafeAreaView)`
 
 const Content = styled.View`
   flex: 1;
-  padding: 16px 20px 0 20px;
+  padding: 16px 0px 0 0px;
 `;
