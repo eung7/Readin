@@ -1,6 +1,6 @@
+import { Body02, Container, Display03 } from "@/src/components/Typography";
 import { useTranslation } from "react-i18next";
 import { ScrollView, View } from "react-native";
-import { Body02, Container, Display03 } from "../../components/Typography";
 
 export default function LibraryScreen() {
   const { t } = useTranslation();

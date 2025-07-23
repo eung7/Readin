@@ -10,7 +10,7 @@ export default function HomeScreen() {
     <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
       <Header
         rightComponent={
-          <TouchableOpacity onPress={() => router.push("/book/1")}>
+          <TouchableOpacity onPress={() => router.push("/search")}>
             <Ionicons name="search" size={24} />
           </TouchableOpacity>
         }

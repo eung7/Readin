@@ -45,7 +45,7 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="library"
+        name="(library)"
         options={{
           title: t("tabs.library"),
           tabBarIcon: ({ color, size }) => (

@@ -1,4 +1,4 @@
-import { KakaoBook } from "@/src/types/kakao";
+import { AladinBook } from "@/src/types/aladin";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
@@ -13,7 +13,7 @@ import { Body01, Caption, Subhead03 } from "../../../components/Typography";
 import { gray } from "../../../constants/colors";
 
 interface SearchBookListItemProps {
-  book: KakaoBook;
+  book: AladinBook;
 }
 
 export default function SearchBookListItem({ book }: SearchBookListItemProps) {
@@ -65,9 +65,9 @@ export default function SearchBookListItem({ book }: SearchBookListItemProps) {
         >
           <BookCard>
             <BookImageContainer>
-              {book.thumbnail && !imageError ? (
+              {book.cover && !imageError ? (
                 <BookImage
-                  source={{ uri: book.thumbnail }}
+                  source={{ uri: book.cover }}
                   onError={() => setImageError(true)}
                 />
               ) : (
@@ -82,9 +82,9 @@ export default function SearchBookListItem({ book }: SearchBookListItemProps) {
 
               <BookMetaContainer>
                 <AuthorPublisherText numberOfLines={1}>
-                  {book.authors.join(", ")} · {book.publisher}
+                  {book.author} · {book.publisher}
                 </AuthorPublisherText>
-                <DateText>{formatDate(book.datetime)}</DateText>
+                <DateText>{formatDate(book.pubdate)}</DateText>
               </BookMetaContainer>
             </BookInfo>
 

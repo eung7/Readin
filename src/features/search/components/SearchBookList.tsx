@@ -1,5 +1,5 @@
 import { Body01 } from "@/src/components/Typography";
-import { useInfiniteSearchKakaoBook } from "@/src/hooks/queries/kakao/useSearchBook";
+import { useGetAladinBook } from "@/src/hooks/queries/aladin/useGetAladinBook";
 import React, { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { ActivityIndicator, FlatList } from "react-native";
@@ -13,14 +13,15 @@ interface SearchBookListProps {
 export default function SearchBookList({ searchQuery }: SearchBookListProps) {
   const { t } = useTranslation();
   const { data, isLoading, fetchNextPage, hasNextPage, isFetchingNextPage } =
-    useInfiniteSearchKakaoBook({
+    useGetAladinBook({
       query: searchQuery,
+      cover: "MidBig",
     });
 
   // 모든 페이지의 데이터를 평면화
   const books = useMemo(() => {
     if (!data) return [];
-    return data.pages.flatMap((page) => page.documents);
+    return data.pages.flatMap((page) => page.data.item);
   }, [data]);
 
   const handleLoadMore = () => {
@@ -55,7 +56,7 @@ export default function SearchBookList({ searchQuery }: SearchBookListProps) {
         renderItem={({ item }) => {
           return <SearchBookListItem book={item} />;
         }}
-        keyExtractor={(item, index) => `${item.isbn || item.title}-${index}`}
+        keyExtractor={(item, index) => `$-${index}`}
         onEndReached={handleLoadMore}
         onEndReachedThreshold={0.5}
         ListFooterComponent={() => {
@@ -72,7 +73,7 @@ export default function SearchBookList({ searchQuery }: SearchBookListProps) {
             <ResultHeader>
               <ResultText>
                 {t("search.result_count", {
-                  count: data?.pages[0]?.meta.total_count || 0,
+                  count: data?.pages[0]?.data.totalResults || 0,
                 })}
               </ResultText>
             </ResultHeader>
